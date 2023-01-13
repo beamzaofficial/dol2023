@@ -43,6 +43,10 @@ export default function Appbar() {
                     <Grid p={1}>
                         <Toolbar>
                             <Image src={"/samartcorp.png"} width={150} height={50} />
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
                             <Image src={"/logoLOD.png"} width={150} height={50} />
                             <Typography color={"black"} variant="h6" component="div" sx={{ flexGrow: 1 }}>
                             </Typography>
