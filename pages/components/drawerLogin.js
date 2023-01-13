@@ -1,17 +1,27 @@
-import React from 'react'
-import dayjs from 'dayjs'
+import React from "react";
+import dayjs from "dayjs";
 import buddhistEra from "dayjs/plugin/buddhistEra";
 dayjs.extend(buddhistEra);
-import { Box, Button, Divider, Drawer, Grid, IconButton, TextField, Toolbar, Typography } from '@mui/material'
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { styled, useTheme } from '@mui/material/styles';
+import {
+    Box,
+    Button,
+    Divider,
+    Drawer,
+    Grid,
+    IconButton,
+    TextField,
+    Toolbar,
+    Typography,
+} from "@mui/material";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { styled, useTheme } from "@mui/material/styles";
 
-const drawerWidth = 240;
+const drawerWidth = 360;
 
-const DrawerHeader = styled('div')(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
+const DrawerHeader = styled("div")(({ theme }) => ({
+    display: "flex",
+    alignItems: "center",
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
@@ -21,13 +31,21 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function DrawerLogin(props) {
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
-    const [showTime, setShowTime] = React.useState("");
+    const [showTime, setShowTime] = React.useState(null);
+
+    const onChangeUserName = (event) => {
+        setUsername(event.target.value);
+    };
+
+    const onChangePassWord = (event) => {
+        setPassword(event.target.value);
+    };
     // const [directionIcon, setDirectionIcon] = React.useState(<ChevronLeftIcon />);
     const theme = useTheme();
 
     React.useEffect(() => {
         setShowTime(dayjs().format("DD/MM/BBBB HH:mm:ss"));
-    }, [])
+    }, []);
 
     return (
         <div>
@@ -35,9 +53,9 @@ export default function DrawerLogin(props) {
                 sx={{
                     width: drawerWidth,
                     flexShrink: 0,
-                    '& .MuiDrawer-paper': {
+                    "& .MuiDrawer-paper": {
                         width: drawerWidth,
-                        boxSizing: 'border-box',
+                        boxSizing: "border-box",
                     },
                 }}
                 variant="persistent"
@@ -47,36 +65,63 @@ export default function DrawerLogin(props) {
                 <DrawerHeader>
                     <Grid container justifyContent={"center"}>
                         <Grid item>
-                            <Typography variant='h6'>Admin Login</Typography>
+                            <Typography variant="h6">Admin Login</Typography>
                         </Grid>
                     </Grid>
                     <IconButton onClick={props.onCloseOpen}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                        {theme.direction === "ltr" ? (
+                            <ChevronLeftIcon />
+                        ) : (
+                            <ChevronRightIcon />
+                        )}
                     </IconButton>
                 </DrawerHeader>
                 <Divider />
                 <Grid container justifyContent={"center"} p={2}>
-                    <Grid item py={1}>
+                    <Grid item py={1} justifySelf={"center"}>
                         <Typography>{showTime}</Typography>
                     </Grid>
                     <Grid item py={1}>
-                        <TextField size='small' error={username == ""} label="Username" variant="outlined" required value={username} onChange={(e) => { setUsername(e) }} />
+                        <TextField
+                            size="small"
+                            error={username == ""}
+                            label={"Username"}
+                            variant="outlined"
+                            required
+                            value={username}
+                            onChange={onChangeUserName}
+                        />
                     </Grid>
                     <Grid item py={1}>
-                        <TextField size='small' error={password == ""} label="Password" variant="outlined" required value={password} onChange={(e) => { setPassword(e) }} />
+                        {/* <TextField type="password" autoComplete="current-password"  /> */}
+                        <TextField
+                            label="Password"
+                            type="password"
+                            autoComplete="current-password"
+                            size="small"
+                            error={password == ""}
+                            variant="outlined"
+                            required
+                            value={password}
+                            onChange={onChangePassWord}
+                        />
                     </Grid>
                     <Grid item py={1}>
                         <Grid container spacing={2}>
                             <Grid item>
-                                <Button variant='contained' color='info'>Login</Button>
+                                <Button variant="contained" color="info">
+                                    Login
+                                </Button>
                             </Grid>
                             <Grid item>
-                                <Button variant='contained' color='error'>Logout</Button>
+                                <Button variant="contained" color="error">
+                                    Logout
+                                </Button>
                             </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
             </Drawer>
         </div>
-    )
+    );
 }

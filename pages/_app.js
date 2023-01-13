@@ -6,7 +6,7 @@ import React from 'react'
 import styles from '../styles/Home.module.css'
 import { Box } from '@mui/material';
 
-const drawerWidth = 240;
+const drawerWidth = 360;
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     flexGrow: 1,

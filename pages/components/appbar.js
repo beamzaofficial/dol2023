@@ -6,7 +6,7 @@ import { styled, useTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
 
-const drawerWidth = 240;
+const drawerWidth = 360;
 
 const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
