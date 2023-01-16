@@ -48,13 +48,13 @@ export default function App({ Component, pageProps }) {
   }
 
   return (
-    <Box display={"flex"}>
-      <AppBar openSideBar={openSideBar} onClickOpen={onClickOpen} onCloseOpen={onCloseOpen} />
-      <Main open={openSideBar} >
-        <DrawerHeader />
-        <Component {...pageProps} />
-      </Main>
-      <DrawerLogin openSideBar={openSideBar} onClickOpen={onClickOpen} onCloseOpen={onCloseOpen} />
-    </Box>
+      <Box display={"flex"}>
+        <AppBar openSideBar={openSideBar} onClickOpen={onClickOpen} onCloseOpen={onCloseOpen} />
+        <Main open={openSideBar} >
+          <DrawerHeader />
+          <Component {...pageProps} />
+        </Main>
+        <DrawerLogin openSideBar={openSideBar} onClickOpen={onClickOpen} onCloseOpen={onCloseOpen} />
+      </Box>
   )
 }

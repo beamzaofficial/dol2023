@@ -16,6 +16,9 @@ import {
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { styled, useTheme } from "@mui/material/styles";
+import content from "../../msg.json"
+import SnackBarDiaLog from "./snackbar";
+
 
 const drawerWidth = 360;
 
@@ -29,9 +32,14 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function DrawerLogin(props) {
+    const theme = useTheme();
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [showTime, setShowTime] = React.useState(null);
+    const [errorInput,setErrorInput] = React.useState([]);
+    const [open,setOpen] = React.useState(false);
+    const [message, setMessage] = React.useState('');
+    const [type,setType] = React.useState('');
 
     const onChangeUserName = (event) => {
         setUsername(event.target.value);
@@ -40,15 +48,57 @@ export default function DrawerLogin(props) {
     const onChangePassWord = (event) => {
         setPassword(event.target.value);
     };
-    // const [directionIcon, setDirectionIcon] = React.useState(<ChevronLeftIcon />);
-    const theme = useTheme();
+
+    const onChekedUser = (username,password) =>{
+        if (username == "admin" && password == "1234") {
+            return true
+        }else{
+            return false
+        }
+    }
 
     React.useEffect(() => {
         setShowTime(dayjs().format("DD/MM/BBBB HH:mm:ss"));
     }, []);
 
+    const _checkedData = () =>{
+        let ValidArr = []
+        if (username == "" || username == '' || username == undefined || username == null) {
+            ValidArr.push("username");
+        }
+        if (password == "" || password == '' || password == undefined || password == null) {
+            ValidArr.push("password");
+        }
+        setErrorInput(ValidArr);
+        return ValidArr
+    }
+
+    const onLogin = () =>{
+        let checkedData = _checkedData();
+        if (checkedData.length > 0) {
+            setMessage(content.MESSAGE_ALERT.VALIDATE.FORM_VALIDATE);
+            setType("error");
+            setOpen(true);
+        }
+        let checkedLogin = onChekedUser(username,password);
+        console.log(checkedLogin);
+        if (checkedLogin) {
+            setMessage(content.MESSAGE_ALERT.SUCCESS.LOGIN_SUCCESSFUL);
+            setType("success");
+            setOpen(true);
+        }else{
+            setMessage(content.MESSAGE_ALERT.FAILED.LOGIN_FAILED);
+            setType("error");
+            setOpen(true);
+        }
+    }
+
+    // console.log(content.MESSAGE_ALERT.ERROR.LOGIN_ERROR,"error_login");
+    // console.log(content.MESSAGE_ALERT.FAILED.LOGIN_FAILED,"error_login");
+    // console.log(content.MESSAGE_ALERT.SUCCESS.SAVE_SUCCESSFUL,"save");
     return (
         <div>
+            <SnackBarDiaLog open={open} message={message} type={type} handleClose={() => setOpen(false)}/>
             <Drawer
                 sx={{
                     width: drawerWidth,
@@ -70,9 +120,9 @@ export default function DrawerLogin(props) {
                     </Grid>
                     <IconButton onClick={props.onCloseOpen}>
                         {theme.direction === "ltr" ? (
-                            <ChevronLeftIcon />
-                        ) : (
                             <ChevronRightIcon />
+                        ) : (
+                            <ChevronLeftIcon />
                         )}
                     </IconButton>
                 </DrawerHeader>
@@ -84,7 +134,7 @@ export default function DrawerLogin(props) {
                     <Grid item py={1}>
                         <TextField
                             size="small"
-                            error={username == ""}
+                            error={errorInput.includes("username")}
                             label={"Username"}
                             variant="outlined"
                             required
@@ -94,22 +144,21 @@ export default function DrawerLogin(props) {
                     </Grid>
                     <Grid item py={1}>
                         {/* <TextField type="password" autoComplete="current-password"  /> */}
-                        <TextField
+                        <TextField fullWidth
+                            type={"password"}
                             label="Password"
-                            type="password"
-                            autoComplete="current-password"
-                            size="small"
-                            error={password == ""}
-                            variant="outlined"
-                            required
                             value={password}
+                            required
+                            variant={"outlined"}
+                            error={errorInput.includes("password")}
                             onChange={onChangePassWord}
+                            size="small"
                         />
                     </Grid>
                     <Grid item py={1}>
                         <Grid container spacing={2}>
                             <Grid item>
-                                <Button variant="contained" color="info">
+                                <Button variant="contained" color="info" onClick={onLogin}>
                                     Login
                                 </Button>
                             </Grid>

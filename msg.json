@@ -1,0 +1,17 @@
+{
+    "MESSAGE_ALERT":{
+        "VALIDATE":{
+            "FORM_VALIDATE": "กรุณากรอกข้อมูลให้ครบถ้วน"
+        },
+        "SUCCESS":{
+            "SAVE_SUCCESSFUL":"บันทึกสำเร็จ",
+            "LOGIN_SUCCESSFUL":"เข้าสู่ระบบสำเร็จ"
+        },
+        "FAILED":{
+            "LOGIN_FAILED":"ไม่สามารถเข้าสู่ระบบ กรุณาลองใหม่"
+        },
+        "ERROR":{
+            "LOGIN_ERROR":"เข้าสู่ระบบผิดพลาด กรุณาลองใหม่"
+        }
+    }
+}
