@@ -5,6 +5,7 @@ import { styled, useTheme } from '@mui/material/styles';
 import React from 'react'
 import styles from '../styles/Home.module.css'
 import { Box } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 const drawerWidth = 360;
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -36,6 +37,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-start',
 }));
 
+
+
 export default function App({ Component, pageProps }) {
   const [openSideBar, setOpenSideBar] = React.useState(false);
 
@@ -47,14 +50,55 @@ export default function App({ Component, pageProps }) {
     setOpenSideBar(false);
   }
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#0f2087",
+        dark: "#0d1a68",
+        contrastText: "#fff"
+      },
+      primaryDark: {
+        main: "#002664",
+        dark: "#00225a",
+        contrastText: "#fff"
+      },
+      export: {
+        main: "#ff5607",
+        dark: "#d64907",
+        contrastText: "#fff"
+      },
+      success: {
+        main: "#72cc50",
+        dark: "#469a10",
+        contrastText: "#fff"
+      },
+      mute: {
+        main: "#808080",
+      },
+      appbar: {
+        main: "#fff"
+      },
+      taoOn: {
+        main: "#b7b7b7"
+      },
+      muteMain: {
+        main: "#455a64",
+        dark: "#455a64",
+        contrastText: "#fff"
+      },
+    }
+  })
+
   return (
-      <Box display={"flex"}>
+    <ThemeProvider theme={theme}>
+      <Box display={"flex"} className={styles.container}>
         <AppBar openSideBar={openSideBar} onClickOpen={onClickOpen} onCloseOpen={onCloseOpen} />
-        <Main open={openSideBar} >
+        <Main open={openSideBar} className={styles.main}>
           <DrawerHeader />
           <Component {...pageProps} />
         </Main>
         <DrawerLogin openSideBar={openSideBar} onClickOpen={onClickOpen} onCloseOpen={onCloseOpen} />
       </Box>
+    </ThemeProvider>
   )
 }

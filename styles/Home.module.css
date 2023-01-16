@@ -2,9 +2,18 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
+  /* align-items: center; */
+  /* padding: 6rem; */
+  /* min-height: 100vh; */
+}
+
+.container {
+  /* min-height: calc(100vh - 45px); */
+  flex: 1;
+  background-color: #32cd32aa;
+  height: auto;
+  /* display: flex; */
+  /* flex-direction: column; */
 }
 
 .description {
@@ -65,11 +74,11 @@
 }
 
 .card p {
-  margin: 0;
+  /* margin: 0; */
   opacity: 0.6;
   font-size: 0.9rem;
   line-height: 1.5;
-  max-width: 30ch;
+  /* max-width: 30ch; */
 }
 
 .center {
