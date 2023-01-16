@@ -10,7 +10,7 @@ export default function Home() {
       <Head>
         <title>โครงการจ้างนำเข้าข้อมูลเพื่อการจดทะเบียนออนไลน์ทั่วประเทศ</title>
         <meta name="description" content="โครงการจ้างนำเข้าข้อมูลเพื่อการจดทะเบียนออนไลน์ทั่วประเทศ" />
-        <link rel="icon" href="/dollogo.png" />
+        <link rel="icon" href="favicon.ico" />
       </Head>
       <Grid container spacing={2}  p={1}>
         {/* <Box className={styles.card}> */}
