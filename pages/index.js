@@ -16,7 +16,7 @@ export default function Home() {
       <Grid container spacing={2} p={1}>
         {/* <Box className={styles.card}> */}
         <Grid item py={1} xs={4}>
-          <Imagezoom src={"/test.jpg"}/>
+          <Imagezoom src={"/test2.jpg"}/>
         </Grid>
         <Grid item py={1} className={styles.card}>
           <Typography paragraph py={1} >
