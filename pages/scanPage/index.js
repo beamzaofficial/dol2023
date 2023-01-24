@@ -15,6 +15,7 @@ export default function IndexScan(props) {
         setValueTab(newValue);
     };
     return (
+        <div>
         <Grid container>
             <Grid xs={12} bgcolor={"white"}>
                 <TabContext value={valueTab}>
@@ -37,5 +38,6 @@ export default function IndexScan(props) {
                 </TabContext>
             </Grid>
         </Grid>
+        </div>
     )
 }
