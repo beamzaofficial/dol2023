@@ -91,7 +91,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box display={"flex"} className={styles.container}>
+      <Box display={"flex"}>
         <AppBar openSideBar={openSideBar} onClickOpen={onClickOpen} onCloseOpen={onCloseOpen} />
         <Main open={openSideBar} className={styles.main}>
           <DrawerHeader />

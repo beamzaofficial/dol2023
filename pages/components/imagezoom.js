@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from 'next/image'
-import { Card, Grid } from "@mui/material";
+import { Box, Card, Grid } from "@mui/material";
 import styles from '../../styles/Home.module.css'
 import {
     Magnifier,
@@ -13,7 +13,7 @@ import {
 
 export default function Imagezoom({ src }) {
     return (
-        <Grid >
+        <Box>
             <SideBySideMagnifier
                 imageSrc={src}
                 // switchSides
@@ -22,6 +22,6 @@ export default function Imagezoom({ src }) {
                 // mouseActivation={MOUSE_ACTIVATION.DOUBLE_CLICK} // Optional
                 // touchActivation={TOUCH_ACTIVATION.DOUBLE_TAP} // Optional
             />
-        </Grid>
+        </Box>
     );
 }
